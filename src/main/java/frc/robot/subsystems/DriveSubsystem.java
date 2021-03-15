@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -46,6 +47,6 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void tankDrive(double left, double right) {
-    driveSystem.tankDrive(left, right);
+    driveSystem.tankDrive(left, right, false);
   }
 }

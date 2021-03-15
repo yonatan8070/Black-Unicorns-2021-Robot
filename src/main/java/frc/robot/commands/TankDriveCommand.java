@@ -7,17 +7,25 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class DriveCommand extends CommandBase {
-  DriveSubsystem drive;
+public class TankDriveCommand extends CommandBase {
+  private DriveSubsystem drive;
+
+  private Joystick rightJoystick;
+  private Joystick leftJoystick;
+
   /**
    * Creates a new DriveCommand.
    */
-  public DriveCommand(DriveSubsystem drive) {
+  public TankDriveCommand(DriveSubsystem drive) {
     this.drive = drive;
     addRequirements(drive);
+
+    rightJoystick = new Joystick(0);
+    leftJoystick = new Joystick(1);
   }
 
   // Called when the command is initially scheduled.
@@ -28,6 +36,10 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double leftSpeed = leftJoystick.getY();
+    double rightSpeed = rightJoystick.getY();
+
+    drive.tankDrive(leftSpeed, rightSpeed);
   }
 
   // Called once the command ends or is interrupted.
